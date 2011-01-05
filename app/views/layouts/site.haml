@@ -6,6 +6,7 @@
     /[if IE]
       = javascript_include_tag "html5"
     = javascript_include_tag :site_defaults
+    = render :partial => "meta_info"
     %title= "#{@title} | howas.it"
   %body{:class => @index ? "home page page-template-page-home-php" : "page page-id-2 page-template page-template-default"}
     .header
