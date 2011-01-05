@@ -1,0 +1,27 @@
+#sidebar.sidebar.right
+  /.widget.searchform
+  /  %form#searchform{:method => "get", :action => "search action"}
+  /    %div
+  /      %input#s.input-text.radius{:name => "s", :value => "", :type => "text"}
+  /      %input#searchsubmit.search-btn.radius{:type => "submit", :value => "Search", :title => "Search"}
+  /.widget
+  /  %h2 Archives
+  /  %ul
+  /    %li
+  /      %a{:title => "June 2010", :href => "http://google.com"}
+  .widget
+    %h2 Categories
+    %ul
+      - BlogTag.all.each do |b|
+        %li.cat-item.cat-item-1
+          %a{:title => "View all posts in #{b.tag}", :href => "http://google.com"}= b.tag
+  /.widget
+  /  %h2 Blogroll
+  /  %ul.xoxo.blogroll
+  /    %li
+  /      %a{:href => "http://google.com", :title => "Title"} Blog name
+  .widget
+    %h2 Meta
+    %ul
+      %li
+        = link_to "Login", login_path

@@ -1,0 +1,10 @@
+= form_for(@user) do |f|
+  %h5 Create Your Account
+  = f.error_messages
+  = render :partial => 'form', :object => f
+  %ul    
+    %li.a-center
+      %button{:type => "submit"}
+        %span.button
+          %span Sign Up!
+= javascript_include_tag "form"

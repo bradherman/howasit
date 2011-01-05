@@ -1,0 +1,70 @@
+%ul
+  %li
+    = form.label :first_name, "First Name"
+    = form.text_field :first_name, {:maxlength => "50"}
+    %em *
+  %li
+    = form.label :last_name, "Last name"
+    = form.text_field :last_name, {:maxlength => "50"}
+    %em *
+  %li
+    = form.label :email, "Email Address"
+    = form.text_field :email, {:maxlength => "50"}
+    %em *
+  %li
+    = form.label :login, "Username"
+    = form.text_field :login, {:maxlength => "20"}
+    %em *
+  %li
+    = form.label :password, form.object.new_record? ? nil : "Change password" 
+    = form.password_field :password, {:maxlength => "25"}
+    %em *
+  %li
+    = form.label :password_confirmation
+    = form.password_field :password_confirmation, {:maxlength => "25"}
+    %em *
+  %li
+    = form.label :phone
+    = form.text_field :phone, {:class => "phone", :maxlength => "20"}
+    %em *
+= fields_for :billing_info do |b|
+  %h5 Billing Info
+  %ul
+    %li
+      = b.label :first_name
+      = b.text_field :first_name, {:maxlength => "50"}
+    %li
+      = b.label :last_name
+      = b.text_field :last_name, {:maxlength => "50"}
+    %li
+      = b.label :address_1
+      = b.text_field :address_1
+    %li
+      = b.label :address_2
+      = b.text_field :address_2
+    %li
+      = b.label :city
+      = b.text_field :city
+    %li
+      = b.label :state
+      = b.select :state, states
+    %li
+      = b.label :zip
+      = b.text_field :zip, {:maxlength => "10"}
+  %h5 Credit Card
+  %ul
+    %li
+      = b.label :number
+      = b.text_field :number, {:maxlength => "19"}
+    %li
+      = b.label :month, "Expiration Date"
+      = b.text_field :month, {:value => "MM", :maxlength => "2", :style => "width: 30px; margin-right:10px; float:left;"}
+      = b.text_field :year, {:value => "YYYY", :maxlength => "4", :style => "width: 75px;"}
+    %li
+      = b.label :verification_code
+      = b.text_field :verification_code, {:maxlength => "4", :style => "width: 75px;"}
+%h5 Subscription Type
+%ul
+  %li
+    = form.label :subscription_level, "Subscription Type"
+    = form.select :subscription_level, ["Good", "Great", "Awesome", "Crazy", "Ridonkulous"]

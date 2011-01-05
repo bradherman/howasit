@@ -1,0 +1,45 @@
+.sidebar.right
+  .widget.contacts
+    %h2 Contact Information
+    %ul
+      %li
+        %strong Toll Free
+        %p 317.331.9718
+      %li
+        %strong Fax
+        %p 800.555.1212
+      %li
+        %strong Address
+        %p 
+          18891 Pilot Mills Dr
+          %br
+          Noblesville, IN 46062
+        %p
+          %a.link-btn{:href => "#"} View Map
+.content
+  %div
+    .contactDiv
+      %div
+        %h2 Send Us an Email
+        .wpcf7#wpcf7-f1-p9-o1
+          %form.wpcf7-form{:action => "#", :method => "post"}
+            .half.left
+              %label Your Name
+              .input-box
+                %span.wpcf7-form-control-wrap.YourName
+                  %input.wpcf7-validates-as-required.input-text.radius{:type => "text", :name => "YourName", :value => "", :size => "40"}
+            .half.right
+              %label Your E-mail Address
+              .input-box
+                %span.wpcf7-form-control-wrap.your-email
+                  %input.wpcf7-validates-as-email.wpcf7-validates-as-required.input-text.radius.input-text{:type => "text", :name => "your-email", :value => "", :size => "40"}
+            .item
+              %label Your Comment
+              .input-box
+                %span.wpcf7-form-control-wrap.your-message
+                  %textarea.radius.input-text{:name => "your-message", :cols => "40", :rows => "10"}
+            .item.a-right
+              .button
+                %span
+                  %input{:type => "submit", :value => "Send Message"}
+            .wpcf7-response-output.wpcf7-display-none

@@ -1,0 +1,35 @@
+.comments-box
+  %h3 # of Comments
+  %ol.commentlist
+    %li
+      #comment-1
+        .comment-meta
+          .comment-author
+            %a.url{:href => "http://google.com", :rel => "external nofollow"} My Wordpress
+          .comment-date June 16
+        .comment-content
+          %p This is the comment text yallllll
+
+.contactDiv.commentform
+ %h2 Leave a Reply
+  %p.cancel-reply.item
+    %a#cancel-comment-reply-link{:rel => "nofollow", :href => "post_link #respond", :style => "display:none;"} Click here to cancel reply
+  %form{:action => "post comment", :method => "post", :id => "commentform"}
+    .item
+      %label{:for => "author"} Your Name *
+      .input-box
+        %input.input-text#author{:type => "text", :name => "author", :value => "", :size => "22", :tabindex => "1", :aria-required => "true"}
+    .item
+      %label{:for => 'email'} Your Email Address *
+      .input-box
+        %input.input-text#email{:type => "text", :name => "email", :value => "", :size => "22", :tabindex => "2", :aria-required => "true"}
+    .item
+      %label Your Comment
+      .input-box
+        %textarea.input-text#comment{:name => "comment", :cols => "100%", :rows => "10", :tabindex => "4"}
+    .item.a-right
+      .button.right
+        %span
+          %input{:name => "submit", :type => "submit", :value => "Submit Comment"}
+      %input#comment_post_ID{:type => "hidden", :name => "comment_post_ID", :value => "1"}
+      %input#comment_parent{:type => "hidden", :name => "comment_parent", :value => "0"}

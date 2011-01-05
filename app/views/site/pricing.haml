@@ -1,0 +1,252 @@
+!!!
+%html{:dir => "ltr", :lang => "en-US"}
+  %head
+    = csrf_meta_tag
+    %title= "#{@title} | howas.it"
+    = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:bold&subset=latin"
+    = stylesheet_link_tag "screen"
+    = stylesheet_link_tag "default"
+    /[if IE]
+      = javascript_include_tag "html5"
+    = javascript_include_tag "jquery"
+    = javascript_include_tag "easySlider1.5"
+    = javascript_include_tag "saas"
+    = javascript_include_tag "cookie"
+    = javascript_include_tag "twitter"
+  %body
+    .header
+      %div
+        .center
+          .topLinks
+            .menu-top-links-container
+              %ul#menu-top-links.menu
+                %li.menu-item= link_to "About", site_about_path
+                %li.menu-item= link_to "Login", login_path
+                %li.menu-item= link_to "Blog", "http://howasit.posterous.com"
+                %li.menu-item= link_to "Help", site_about_path
+                %li.menu-item= link_to "Contact", site_contact_path
+          %h1#logo= link_to "howas.it?", root_path
+          .nav
+            .menu-main-nav-container
+              %ul#menu-main-nav.menu
+                %li.menu-item
+                  %a{:href => site_about_path}
+                    %span Tour
+                %li.menu-item
+                  %a{:href => site_pricing_path}
+                    %span Pricing
+                %li.menu-item
+                  %a{:href => new_user_path}
+                    %span Sign Up
+          .grid
+            %aside
+              %ul
+                %li 30-day Free Trial
+                %li Mobile Surveys
+                %li Custom Domains
+                %li QR Codes
+                %li Unique Coupons
+                %li Unique Surveys
+                %li Businesses
+            .sections.col5
+              %section
+                %header
+                  %h1 Mom & Pop
+                  %h2 
+                    $8.99 
+                    %span
+                      per month
+                %footer
+                  %ul
+                    %li
+                      %span= image_tag "i_sticky.png" 
+                    %li
+                      %span= image_tag "i_sticky.png"
+                    %li
+                      %span= image_tag "i_no.png"
+                    %li
+                      %span= image_tag "i_no.png"
+                    %li
+                      %span= "1"
+                    %li
+                      %span= "1"
+                    %li
+                      %span= "1"
+                    %li.last
+                      %a.btn{new_user_path}
+                        %span
+                          Choose Plan
+              %section
+                %header
+                  %h1 Local Chain
+                  %h2 
+                    $19.99 
+                    %span
+                      per month
+                %footer
+                  %ul
+                    %li
+                      %span= image_tag "i_sticky.png"
+                      .tooltip
+                        %div
+                          %h3 Header 3
+                          %p Duis volutpat nisl ac ante pulvinar non lobortis urna adipiscing. In hac habitasse platea dictumst
+                    %li
+                      %span= image_tag "i_sticky.png" 
+                    %li
+                      %span= image_tag "i_no.png"
+                    %li
+                      %span= image_tag "i_no.png"
+                    %li
+                      %span= "2"
+                    %li
+                      %span= "2"
+                    %li
+                      %span= "5"
+                    %li.last
+                      %a.btn{new_user_path}
+                        %span
+                          Choose Plan
+              %section.on
+                %header
+                  %h1 Franchise
+                  %h2 
+                    $29.99 
+                    %span
+                      per month
+                %footer
+                  %ul
+                    %li
+                      %span= image_tag "i_sticky.png" 
+                    %li
+                      %span= image_tag "i_sticky.png"
+                    %li
+                      %span= image_tag "i_sticky.png"
+                    %li
+                      %span= image_tag "i_no.png"
+                    %li
+                      %span= "5"
+                    %li
+                      %span= "5"
+                    %li
+                      %span= "10"
+                    %li.last
+                      %a.btn{new_user_path}
+                        %span
+                          Choose Plan
+              %section
+                %header
+                  %h1 Chain
+                  %h2 
+                    $39.99 
+                    %span
+                      per month
+                %footer
+                  %ul
+                    %li
+                      %span= image_tag "i_sticky.png" 
+                    %li
+                      %span= image_tag "i_sticky.png"
+                    %li
+                      %span= image_tag "i_sticky.png"
+                    %li
+                      %span= image_tag "i_sticky.png"
+                    %li
+                      %span= "10"
+                    %li
+                      %span= "10"
+                    %li
+                      %span= "20"
+                    %li.last
+                      %a.btn{new_user_path}
+                        %span
+                          Choose Plan 
+              %section
+                %header
+                  %h1 National
+                  %h2 
+                    call
+                    %span
+                      for pricing
+                %footer
+                  %ul
+                    %li
+                      %span= image_tag "i_sticky.png" 
+                    %li
+                      %span= image_tag "i_sticky.png"
+                    %li
+                      %span= image_tag "i_sticky.png"
+                    %li
+                      %span= image_tag "i_sticky.png"
+                    %li
+                      %span= "more"
+                    %li
+                      %span= "tons"
+                    %li
+                      %span= "lots"
+                    %li.last
+                      %a.btn{new_user_path}
+                        %span
+                          Choose Plan
+    .container
+      .center
+        .features4
+          %h2 Features Included with all Plans
+          %ul
+            %li
+              .icon= image_tag "i_calendar.png"
+              .content
+                %h3 Custom Reports
+                %p With howas.it you decide when and how you get your feedback.  Want an email every time someone leaves feedback?  No problem.  How about a weekly summary?  We can do that too.  Want to export customer emails to an Excel file?  We can't do that... Just kidding.  We've got you covered.
+            %li
+              .icon= image_tag "globe_48.png"
+              .content
+                %h3 Geo-location Based Mobile App
+                %p Let's face it, no one wants to download an app just to leave you some feedback.  Just direct your users to howas.it and if they're on mobile, the site will pick up their GPS location and load your survey.  Don't worry, if we can't locate them, they can search quickly by name, zip, city, etc using our mobile optimized web app.
+            %li
+              .icon= image_tag "shield_48.png"
+              .content
+                %h3 Secure and Easy Billing
+                %p We offer safe, secure, and simple billing.  Pick your plan, enter your information, and you're done.  We'll bill you monthly for you subscription cost.  With howas.it, upgrading your subscription is easy too.  Just go into your account and you can upgrade with a few clicks.  Even though we don't want you to downgrade, we even made that easy too.
+            %li
+              .icon= image_tag "i_clock.png"
+              .content
+                %h3 Free Trial
+                %p Not sure you want to spend the money on our service?  We're confident that you'll love our product, so we've thrown in a 30-day free trial.  Sign up for the plan you think you'll want, and start playing with the service.  If you decide it's not for you, cancel within the first two weeks and pretend we never met.
+    .footer
+      .prom
+        .center
+          %h2
+            %strong Sign up now!
+            Each account free for the first 30 days!
+          .right= link_to image_tag ("btn-sign-up.png"), new_user_path
+      .links
+        .center
+          %div
+            %h3 Company
+            %ul
+              %li= link_to "Team", root_path
+              %li= link_to "Partners", root_path
+              %li= link_to "Investors", root_path
+          %div
+            %h3 Keep in Touch
+            %ul.social-links
+              %li= link_to image_tag ("i_socialTwitter.png"), "http://twitter.com"
+              %li= link_to image_tag ("i_socialFacebook.png"), "http://facebook.com"
+          %div
+            %h3 Support
+            %p
+              = link_to "Create Support Ticket", root_path
+              %br
+              = link_to "FAQs", root_path
+          %div
+            %h3 My Address
+            %p 
+              PO Box 1337
+              %br
+              Noblesville, IN 46062
+            %p
+              = link_to "http://howas.it", "http://howas.it"
+              %br
+              317.331.9718
+    = javascript_include_tag "form"

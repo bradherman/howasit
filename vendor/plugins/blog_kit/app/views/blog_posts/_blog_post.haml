@@ -1,0 +1,35 @@
+.post-1.post.type-post.hentry.category-uncategorized
+  .post-thumbnail
+    %a{:href => "link_to_post", :rel => "bookmark", :title => "Title of Blog Post"}
+      - if blog_post.blog_images.size > 0
+        %img.attachment-post-thumbnail.wp-post-image{:width => "140", :height => "139", :src => "/system/images/#{blog_post.blog_images.first.id}/large/#{blog_post.blog_images.first.image_file_name}", :alt => "thumb1", :title => "thumb1"}
+  .entry
+    %h3= link_to(h(blog_post.title), blog_post, :title => blog_post.title, :rel => "bookmark")
+    %span.postime= blog_post.updated_at.strftime("%b %d")
+    = blog_post.parsed_body
+    /%p
+    /  %a.keep-reading{:href => "link_to_post", :rel => "bookmark", :title => "Title of post"} Keep Reading
+    .postmeta
+      .social-links.right
+        %a{:href => "http://twitter.com/home?status=#{blog_post.title} | http://howas.it/#{blog_post_path(blog_post)}"}
+          %img{:src => "http://saas-wp-ii.worryfreelabs.com/wp-content/themes/SaaS-II/images/i_socialTwitter.png", :alt => "Tweet this!"}
+      .comment-stats
+        = link_to(pluralize(blog_post.blog_comments.count, 'comment'), "#{blog_post_path(blog_post)}#comments-box", :title => "Comment on #{blog_post.title}")
+      %div
+        Posted in
+        - unless blog_post.tags.blank?
+          = blog_post.tags_with_links
+- if defined?(show_comments)
+  = render :partial => "blog_posts/comments"
+  = render :partial => "blog_comments/new_blog_comment", :locals => {:blog_comment => @blog_comment}
+
+/ - if params[:action] == 'show'
+/   %li= link_to('Back', blog_posts_path)
+
+/ - if current_user && current_user.admin?
+/   %li= link_to('Edit Post', edit_blog_post_path(blog_post))
+/   %li= link_to('Delete', blog_post_path(blog_post), :method => :delete, :confirm => "Are you sure you want to destroy the post: #{blog_post.title}")
+
+/ - if defined?(show_comments)
+/   = render :partial => "blog_comments/new_blog_comment", :locals => {:blog_comment => @blog_comment}
+/   = render :partial => "blog_posts/comments"

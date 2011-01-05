@@ -1,0 +1,40 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    = csrf_meta_tag
+    %title= "#{@title} | howas.it"
+    = stylesheet_link_tag :admin
+    /[if lte IE 7]
+      = stylesheet_link_tag "admin_ie"
+    = javascript_include_tag :admin_defaults
+    /[if IE 6]
+      = javascript_include_tag "pngfix"
+      %script{:type => "text/javascript"}
+        = "DD_belatedPNG.fix('.png_bg, img, li);"
+  %body#login
+    #login-wrapper.png_bg
+      #login-top
+        %h1 Simpla Admin
+        = link_to (image_tag "howasit_logo_alt.png"), root_path
+      #login-content
+        = form_for @user_session, :as => :user_session, :url => { :action => "create" } do |f|
+          - if !f.error_messages==""
+            .notification.information.png_bg
+              %div= f.error_messages
+          - if flash[:notice]
+            .notification.information.png_bg
+              %div= flash[:notice]
+          %p
+            %label Login
+            = f.text_field :login, {:class => "text-input"}
+          .clear
+          %p
+            %label Password
+            = f.password_field :password, {:class => "text-input"}
+          .clear
+          %p#remember-password
+            = f.check_box :remember_me
+            Remember Me
+          .clear
+          %p
+            = f.submit "Sign In", {:class => "button"}

@@ -1,0 +1,33 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    = csrf_meta_tag
+    %title= "#{@title} | howas.it"
+    = stylesheet_link_tag "reset"
+    = stylesheet_link_tag "admin"
+    = stylesheet_link_tag "invalid"
+    = stylesheet_link_tag "blue"
+    /%link{:href => 'http://fonts.googleapis.com/css?family=Lobster', :rel => 'stylesheet',  :type => 'text/css'}
+    %link{:href => 'http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz', :rel => 'stylesheet',  :type => 'text/css'}
+    /[if lte IE 7]
+      = stylesheet_link_tag "admin_ie"
+    = javascript_include_tag "jquery"
+    = javascript_include_tag "simpla_config"
+    = javascript_include_tag "facebox"
+    = javascript_include_tag "wysiwyg"
+    /[if IE 6]
+      = javascript_include_tag "pngfix"
+      %script{:type => "text/javascript"}
+        = "DD_belatedPNG.fix('.png_bg, img, li);"
+  %body#login
+    #login-wrapper.png_bg
+      #login-top
+        %h1 howas.it?
+        = image_tag "howasit_logo_alt.png"
+      #login-content{:style => "width:520px;margin:0 auto"}
+        %h2{:style => "font-family:'Yanone Kaffeesatz'; letter-spacing: .1em;font-size:48px;"}
+          %center{:style => "color:#eee;"} coming soon...
+        %br
+        %br
+        %center
+          = render 'beta_form'

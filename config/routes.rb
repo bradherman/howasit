@@ -1,58 +1,60 @@
 Howasit::Application.routes.draw do
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
+  #  match "users" => "site#coming_soon"
+  #  match "coupons" => "site#coming_soon"
+  #  match "businesses" => "site#coming_soon"
+  #  match "surveys" => "site#coming_soon"
+  #  match "users/logout"  => "site#coming_soon"
+  #  match "user/businesses" => "site#coming_soon"
+  #  match "mobile/index" => "site#coming_soon"
+  #  match "mobile/search" => "site#coming_soon"
+  #  match "site/about" => "site#coming_soon"
+  #  match "site/pricing" => "site#coming_soon"
+  #  match "site/contact" => "site#coming_soon"
+  #  match "site/support" => "site#coming_soon"
+  #  match "site/index" => "site#coming_soon"
+  #  match "site/blog" => "site#coming_soon"
+  #  match "site/tour" => "site#coming_soon"
+  #  match "users/:id" => "site#coming_soon"
+  #  match "businesses/:id" => "site#coming_soon"
+  #  match "coupons/:id" => "site#coming_soon"
+  #  match "surveys/:id" => "site#coming_soon"
+  #  match "/" => "site#coming_soon"
+  #  root :to => "site#coming_soon"
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => "welcome#index"
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+  get "mobile/index"
+  get "mobile/search"
+  
+  match 'user/businesses' => 'users#businesses'
+  match 'businesses/destroy/:id' => 'businesses#destroy', :as => "delete_business"
+  match 'surveys/destroy/:id' => 'surveys#destroy', :as => "delete_survey"
+  match 'coupons/destroy/:id' => 'coupons#destroy', :as => "delete_coupon"
+  
+  match 'user_sessions/new' => 'user_sessions#new', :as => :login
+  match 'user_sessions/destroy' => 'user_sessions#destroy', :as => :logout
+  
+  resources :coupons
+  resources :surveys
+  resources :restaurants
+  resources :businesses
+  resources :user_sessions
+  resources :users
+  
+  resource :user_session
+  resource :account, :controller => "users"
+  
+  get "site/about"
+  get "site/pricing"
+  get "site/contact"
+  get "site/support"
+  get "site/index"
+  get "site/blog"
+  get "site/tour"
+  get "site/coming_soon"
+  get "site/investors"
+  get "site/partners"
+  get "site/press"
+  get "site/faq"
+  get "site/team"
+  match '/' => 'mobile#index', :constraints => { :subdomain => "m" }
+  root :to => "site#index"
 end

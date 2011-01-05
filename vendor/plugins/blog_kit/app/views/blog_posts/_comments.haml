@@ -1,0 +1,5 @@
+.comments-box#comments-box
+  %h3= pluralize(@blog_post.blog_comments.count, "comment")
+  %ol.commentlist
+    - @blog_comments.each do |comment|
+      = render :partial => "blog_posts/comment", :locals => {:comment => comment}

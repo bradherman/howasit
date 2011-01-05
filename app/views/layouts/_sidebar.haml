@@ -1,0 +1,48 @@
+#sidebar
+  #sidebar-wrapper
+    %h1#sidebar-title
+      = link_to user_path(session[:user_id])
+    %center= link_to image_tag("logo_small.png", :id => "logo"), root_path
+    #profile-links
+      Hello, 
+      = link_to "#{User.find(session[:user_id]).first_name}, ", "#"
+      welcome back.
+      %br
+      = link_to "My Account", user_path(session[:user_id])
+      = " | "
+      = link_to "Upgrade", "#"
+      = " | "
+      = link_to "Log Out", logout_path
+    %ul#main-nav
+      %li
+        = link_to "Dashboard", user_path(session[:user_id]), {:class => "nav-top-item no-submenu current"}
+      %li
+        = link_to "My Businesses", "#", {:class => "nav-top-item"}
+        %ul
+          %li= link_to "Show All", user_businesses_path
+      %li
+        = link_to "My Surveys", "#", {:class => "nav-top-item"}
+      %li
+        = link_to "My Coupons", "#", {:class => "nav-top-item no-submenu"}
+      %li
+        = link_to "My Account", "#", {:class => "nav-top-item no-submenu"}
+    #messages{:style => "display:none"}
+      %h3 Number of messages
+      %p
+        %strong Message Title
+        from Person
+        %br
+        Lorem ipsum dolor sit amet
+        %small= link_to "Remove Message", "#", {:class => "remove-link"}
+      %p
+        %strong Message Title
+        from Person
+        %br
+        Lorem ipsum dolor sit amet
+        %small= link_to "Remove Message", "#", {:class => "remove-link"}
+      %p
+        %strong Message Title
+        from Person
+        %br
+        Lorem ipsum dolor sit amet
+        %small= link_to "Remove Message", "#", {:class => "remove-link"}

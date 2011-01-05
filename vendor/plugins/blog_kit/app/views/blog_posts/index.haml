@@ -1,0 +1,13 @@
+= render "sidebar"
+#content.content
+  %div
+    - if @blog_posts.size == 0 && !params[:page]
+      .blogPost
+        %h1 No Blog Posts Yet!
+    - else
+      - if @tag
+        %h1= "Tag: #{@tag}"
+      = render :collection => @blog_posts, :partial => "blog_post"
+/<div class="blogPages">
+/<%= will_paginate @blog_posts %>
+/</div>

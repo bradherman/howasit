@@ -1,0 +1,76 @@
+.contactDiv.commentform
+  - if !current_user && (!BlogKit.instance.settings['anonymous_comments'] || BlogKit.instance.settings['anonymous_comments'] == false)
+    %p You must be logged in to do that!
+  - else
+    %h2 Leave a Reply
+    %p.cancel-reply.item
+      %a#cancel-comment-reply-link{:rel => "nofollow", :href => "post_link #respond", :style => "display:none;"} Click here to cancel reply
+    = form_for([@blog_post, blog_comment], :html => {:id => "commentform"}) do |f|
+      .item
+        %label{:for => "name"} Your Name *
+        .input-box
+          = f.text_field :name, :class => "input-text", :id => "author", :size => "22", :tabindex => "1", "aria-required" => "true"
+          /%input.input-text#author{:type => "text", :name => "author", :value => "", :size => "22", :tabindex => "1", :aria-required => "true"}
+      .item
+        %label{:for => 'email'} Your Email Address *
+        .input-box
+          = f.text_field :email, :class => "input-text", :id => "email", :value => "", :size => "22", :tabindex => "2"
+          /%input.input-text#email{:type => "text", :name => "email", :value => "", :size => "22", :tabindex => "2", :aria-required => "true"}
+      .item
+        %label{:for => 'site_url'} Your Website
+        .input-box
+          = f.text_field :site_url, :class => "input-text", :id => "site_url", :value => "", :size => "22", :tabindex => "2"
+      .item
+        %label{:for => "body"} Your Comment
+        .input-box
+          = f.text_area :body, :class => "input-text", :id => "comment", :cols => "100%", :rows => "10", :tabindex => "4"
+          /%textarea.input-text#comment{:name => "comment", :cols => "100%", :rows => "10", :tabindex => "4"}
+      .item.a-right
+        .button.right
+          %span
+            %input{:name => "submit", :type => "submit", :value => "Submit Comment"}
+        %input#comment_post_ID{:type => "hidden", :name => "comment_post_ID", :value => "1"}
+        %input#comment_parent{:type => "hidden", :name => "comment_parent", :value => "0"}
+/<div class="blogNewComment">
+/	<h2>Post a Comment</h2>
+/	<% if !current_user && (!BlogKit.instance.settings['anonymous_comments'] || BlogKit.instance.settings['anonymous_comments'] == false) %>
+/		<p>You must be logged in to post a comment.</p>
+/	<% else %>
+/		<% if current_user %>
+/			<p>Posting as <span class="blogPoster"><%= current_user.name %></span></p>
+/		<% end %>
+/		<% form_for([@blog_post, blog_comment]) do |f| %>
+/			<% if blog_comment.errors.size > 0 %>
+/				<div id="errorExplanation">
+/					<h2>The comment could not be saved:</h2>
+/					<ul>
+/						<% blog_comment.errors.full_messages.each do |msg| %>
+/							<li><%= msg %></li>
+/						<% end %>
+/					</ul>
+/				</div>
+/			<% end %>
+/			<% unless current_user %>
+/				<p>
+/					<%= f.label :name %><br />
+/					<%= f.text_field :name %>
+/				</p>
+/				<p>
+/					<%= f.label :site_url, 'Web Site' %><br />
+/					<%= f.text_field :site_url %>
+/				</p>
+/				<p>
+/					<%= f.label :email, 'Email (optional)' %><br />
+/					<%= f.text_field :email %>
+/				</p>
+/			<% end %>
+/			<p>
+/				<%= f.label :body, 'Comment' %><br />
+/				<%= f.text_area :body, :class => 'blogNewCommentField' %>
+/			</p>
+/			<p>
+/				<%= f.submit 'Post' %>
+/			</p>
+/		<% end %>
+/	<% end %>
+/</div>

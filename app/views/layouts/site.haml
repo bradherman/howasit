@@ -1,0 +1,86 @@
+!!!
+%html{:dir => "ltr", :lang => "en-US"}
+  %head
+    = csrf_meta_tag
+    = stylesheet_link_tag :site
+    /[if IE]
+      = javascript_include_tag "html5"
+    = javascript_include_tag :site_defaults
+    %title= "#{@title} | howas.it"
+  %body{:class => @index ? "home page page-template-page-home-php" : "page page-id-2 page-template page-template-default"}
+    .header
+      %div
+        .center
+          .topLinks
+            .menu-top-links-container
+              %ul#menu-top-links.menu
+                %li.menu-item= link_to "About", site_about_path
+                - if current_user
+                  %li.menu-item= link_to "Logout", logout_path
+                - else
+                  %li.menu-item= link_to "Login", login_path
+                %li.menu-item= link_to "Blog", blog_posts_path
+                %li.menu-item= link_to "Support", site_support_path
+                %li.menu-item= link_to "Contact", site_contact_path
+          %h1#logo= link_to "howas.it?", root_path
+          .nav
+            .menu-main-nav-container
+              %ul#menu-main-nav.menu
+                %li.menu-item
+                  %a{:href => site_tour_path}
+                    %span Tour
+                %li.menu-item
+                  %a{:href => site_pricing_path}
+                    %span Plans & Pricing
+                %li.menu-item
+                  %a{:href => new_user_path}
+                    %span Sign Up
+          - if !@index
+            .page-title
+              %div
+                %h2= @header
+                .right
+                  %a.button{:href => new_user_path}
+                    %span Sign up Now!
+    .container
+      .center
+        = yield
+    .footer
+      .prom
+        .center
+          %h2
+            %strong Sign up now!
+            Each account free for the first 30 days!
+          .right= link_to image_tag ("btn-sign-up.png"), new_user_path
+      .links
+        .center
+          %div
+            %h3 Company
+            %ul
+              %li= link_to "Team", site_team_path
+              %li= link_to "Partners", site_partners_path
+              %li= link_to "Investors", site_investors_path
+          %div
+            %h3 Keep in Touch
+            %ul.social-links
+              %li= link_to image_tag ("i_socialTwitter.png"), "http://twitter.com/howasitapp"
+              %li= link_to image_tag ("i_socialFacebook.png"), "http://facebook.com"
+          %div
+            %h3 Support
+            %p
+              = link_to "Create Support Ticket", site_support_path
+              %br
+              = link_to "FAQs", site_faq_path
+              %br
+              = link_to "Contact Us", site_contact_path
+          %div
+            %h3 Contact Info
+            %p 
+              PO Box 1337
+              %br
+              Noblesville, IN 46062
+            %p
+              = link_to "http://howas.it", "http://howas.it"
+              %br
+              317.331.9718
+    = javascript_include_tag "form"
