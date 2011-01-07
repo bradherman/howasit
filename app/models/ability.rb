@@ -3,21 +3,32 @@ class Ability
   
   def initialize(user)
     user ||= User.new # guest user
+    # user ||= current_user ||= User.new
     
-    if user.role? :admin
+    # blog abilities
+    can :read, [BlogPost, BlogComment]
+    can :create, BlogComment    
+    #can :show, [Business, Coupon, Survey]
+    can :create, User
+    can :manage, UserSession
+    
+    if user.admin?                                              # admin user
       can :manage, :all
+    elsif user.login                                            # registered user
+      can [:update, :read, :destroy], User, :user_id == user.id
+      # cant create -- handle on if logged on, cant new -- hangle on if logged on
+      
+      # business model
+
+      # coupon model
+      
+      # survey model
     else
-      can :read, :all
-      can :create, Comment
-      can :update, Comment do |comment|
-        comment.try(:user) == user || user.role?(:moderator)
-      end
-      if user.role?(:author)
-        can :create, Article
-        can :update, Article do |article|
-          article.try(:user) == user
-        end
-      end
+      # non-registered user
     end
+    
+    # unauthorized! if cannot? :edit, @user
+    # load_and_authorize_resource   in controller, can remove set instance
+    # load_and_authorize_resource :nested => "businesses"  -- for nested resources
   end
 end

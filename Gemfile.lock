@@ -33,6 +33,7 @@ GEM
     authlogic (2.1.6)
       activesupport
     builder (2.1.2)
+    cancan (1.4.1)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     graticule (2.0.0)
@@ -90,6 +91,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord (= 3.0.3)
   authlogic
+  cancan
   graticule
   haml
   hirb
