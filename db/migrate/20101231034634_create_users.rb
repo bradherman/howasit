@@ -17,6 +17,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string    :current_login_ip
       t.string    :last_login_ip
       
+      t.integer   :subscription_level_id
+      
       t.boolean   :admin, :default => false
 
       t.timestamps

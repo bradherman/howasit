@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_one :subscription_level
+  belongs_to :subscription_level
+  has_many :businesses, :dependent => :destroy
   has_one :account
   
   acts_as_authentic

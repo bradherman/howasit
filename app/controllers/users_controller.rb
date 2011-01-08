@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update]
-  load_and_authorize_resource
 
   def new
     @title = "Register Account"
     @header = "Register Your Account"
-    #@user = User.new
+    @user = User.new
+    authorize! :create, @user
     
     respond_to do |format|
       format.html { render :layout => 'site' }# new.html.erb
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    #@user = User.new(params[:user])
+    @user = User.new(params[:user])
     
     # all account register shit here
 
@@ -32,8 +32,8 @@ class UsersController < ApplicationController
 
   def show
     @title = "My Account"
-    #@user = @current_user
-    render :layout => 'admin'
+    @user = User.find(params[:id])
+    authorize! :read, @user
     
     respond_to do |format|
       format.html { render :layout => 'admin' } # show.html.erb
@@ -43,7 +43,9 @@ class UsersController < ApplicationController
 
   def edit
     @title = "Edit Account Info"
-    #@user = @current_user
+    @user = User.find(params[:id])
+    authorize! :update, @user
+    
     render :layout => 'edit'
   end
 
@@ -59,6 +61,17 @@ class UsersController < ApplicationController
         format.html { render :action => "edit" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
+    end
+  end
+  
+  def destroy
+    @user = User.find(params[:id])
+    authorize! :create, @user
+    @user.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(login_path, :notice => "Account Closed :()") }
+      format.xml  { head :ok }
     end
   end
 end

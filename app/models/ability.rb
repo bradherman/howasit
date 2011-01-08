@@ -15,7 +15,13 @@ class Ability
     if user.admin?                                              # admin user
       can :manage, :all
     elsif user.login                                            # registered user
-      can [:update, :read, :destroy], User, :user_id == user.id
+      can [:update, :read, :destroy], User do |u| 
+        u.id == user.id
+      end
+      can :create, Business
+      can [:update, :destroy, :read], Business do |b| 
+        b.user_id == user.id
+      end
       # cant create -- handle on if logged on, cant new -- hangle on if logged on
       
       # business model

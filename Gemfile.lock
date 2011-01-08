@@ -29,6 +29,8 @@ GEM
       activemodel (= 3.0.3)
       activesupport (= 3.0.3)
     activesupport (3.0.3)
+    acts_as_geocodable (2.0.2)
+      graticule (>= 2.0.0)
     arel (2.0.6)
     authlogic (2.1.6)
       activesupport
@@ -90,6 +92,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (= 3.0.3)
+  acts_as_geocodable
   authlogic
   cancan
   graticule
