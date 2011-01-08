@@ -1,7 +1,6 @@
 class BusinessesController < ApplicationController
   before_filter :require_user, :only => [:edit, :update, :destroy, :show]
   layout "admin"
-  #load_and_authorize_resource
   
   # GET /businesses
   # GET /businesses.xml

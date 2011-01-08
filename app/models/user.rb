@@ -1,11 +1,9 @@
 class User < ActiveRecord::Base
-<<<<<<< HEAD
   #has_one :subscription_level
-=======
   belongs_to :subscription_level
   has_many :businesses, :dependent => :destroy
->>>>>>> business
-  has_one :account
+
+#  has_one :account
   
   acts_as_authentic
   
