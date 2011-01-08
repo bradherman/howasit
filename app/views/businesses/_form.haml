@@ -1,0 +1,36 @@
+= form_for(@business) do |f| 
+  - if @business.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@business.errors.count, "error")}  prohibited this business from being saved:"
+      %ul
+      - @business.errors.full_messages.each do |msg| 
+        %li= msg
+  %h3 Business Info
+  %p
+    = f.label :name, "Business Name"
+    = f.text_field :name, {:class => "text-input"}
+  %p
+    = f.label :description, "Short Description"
+    = f.text_area :description, {:class => "text-input", :style => "width:400px !important;height:100px;"}
+  = f.fields_for :address_attributes do |a|
+    %p
+      = a.label :line_1, "Address"
+      = a.text_field :line_1, {:class => "text-input"}
+      %br
+      %br
+      = a.text_field :line_2, {:class => "text-input"}
+    %p
+      = a.label :city
+      = a.text_field :city, {:class => "text-input"}
+    %p
+      = a.label :state
+      = a.select :state, states
+    %p
+      = a.label :zip
+      = a.text_field :zip, {:class => "text-input"}
+  %p
+    = f.label :phone
+    = f.text_field :phone, {:class => "text-input"}
+    = f.hidden_field :user_id, :value => current_user.id
+  %p
+    = f.submit "Next", {:class => "button"}

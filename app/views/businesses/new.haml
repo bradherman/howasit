@@ -1,0 +1,15 @@
+%h2= "Welcome #{current_user.first_name}"
+%p#page-intro What would you like to do?
+.content-box
+  .content-box-header
+    %h3 Register A New Business Location
+    /%ul.content-box-tabs
+    /  %li
+    /    %a.default-tab{:href => "#tab1"}
+    .clear
+  .content-box-content
+    .tab-content.default-tab#tab1
+      - if current_user.businesses.size >= current_user.subscription_level.business_limit
+        %p You've used up your business slots.  Please upgrade to add more locations.
+      - else
+        = render 'form'
