@@ -16,7 +16,6 @@ class UserSessionsController < ApplicationController
       if @user_session.save
         format.html { redirect_to account_path, :notice => "Login successful!" }
       else
-        #render :action => :new, :layout => nil, flash[:notice] => "Username/Password Incorrect"
         format.html { redirect_to(new_user_session_path, :notice => @user_session.errors) }
       end
     end

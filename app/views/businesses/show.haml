@@ -16,9 +16,9 @@
     %p= @business.description
     %h3 Address
     %p
-      = @business.address.line_1
+      = @business.street
       %br
-      = "#{@business.address.city}, #{@business.address.state} #{@business.address.zip}"
+      = "#{@business.city}, #{@business.state} #{@business.zip}"
     /t.integer :user_id
     /t.integer :survey_id
     /t.integer :coupon_id

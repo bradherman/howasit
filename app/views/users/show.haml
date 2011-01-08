@@ -91,7 +91,7 @@
                 %td
                   %input{:type => "checkbox"}
                 %td= link_to b.name, business_path(b)
-                %td= b.address.line_1
+                %td= b.street
                 /- if b.survey_id
                 /  - s = Survey.find(b.survey_id)
                 /  %td= link_to s.name, survey_path(s)

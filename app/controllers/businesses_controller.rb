@@ -83,7 +83,7 @@ class BusinessesController < ApplicationController
     @business.destroy
 
     respond_to do |format|
-      format.html { redirect_to(businesses_url) }
+      format.html { redirect_to(current_user) }
       format.xml  { head :ok }
     end
   end

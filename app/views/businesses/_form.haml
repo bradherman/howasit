@@ -12,22 +12,18 @@
   %p
     = f.label :description, "Short Description"
     = f.text_area :description, {:class => "text-input", :style => "width:400px !important;height:100px;"}
-  = f.fields_for :address_attributes do |a|
-    %p
-      = a.label :line_1, "Address"
-      = a.text_field :line_1, {:class => "text-input"}
-      %br
-      %br
-      = a.text_field :line_2, {:class => "text-input"}
-    %p
-      = a.label :city
-      = a.text_field :city, {:class => "text-input"}
-    %p
-      = a.label :state
-      = a.select :state, states
-    %p
-      = a.label :zip
-      = a.text_field :zip, {:class => "text-input"}
+  %p
+    = f.label :street, "Address"
+    = f.text_field :street, {:class => "text-input"}
+  %p
+    = f.label :city
+    = f.text_field :city, {:class => "text-input"}
+  %p
+    = f.label :state
+    = f.select :state, states
+  %p
+    = f.label :zip, "Zip Code"
+    = f.text_field :zip, {:class => "text-input"}
   %p
     = f.label :phone
     = f.text_field :phone, {:class => "text-input"}

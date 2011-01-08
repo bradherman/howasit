@@ -32,7 +32,11 @@ class UsersController < ApplicationController
 
   def show
     @title = "My Account"
-    @user = User.find(params[:id])
+    if params[:id]
+      @user = User.find(params[:id])
+    else
+      @user = User.find(current_user)
+    end
     authorize! :read, @user
     
     respond_to do |format|
