@@ -21,26 +21,24 @@ Howasit::Application.routes.draw do
   #  match "/" => "site#coming_soon"
   #  root :to => "site#coming_soon"
 
-  get "mobile/index"
-  get "mobile/search"
+#  resources :coupons
+#  resources :surveys
+  resources :businesses
+  resources :users
+  resource :user_session
+  resource :account, :controller => "users"
   
+
+#  get "mobile/index"
+#  get "mobile/search"
   match 'user/businesses' => 'users#businesses'
   match 'businesses/destroy/:id' => 'businesses#destroy', :as => "delete_business"
   match 'surveys/destroy/:id' => 'surveys#destroy', :as => "delete_survey"
   match 'coupons/destroy/:id' => 'coupons#destroy', :as => "delete_coupon"
-  
   match 'user_sessions/new' => 'user_sessions#new', :as => :login
   match 'user_sessions/destroy' => 'user_sessions#destroy', :as => :logout
   
-  resources :coupons
-  resources :surveys
-  resources :restaurants
-  resources :businesses
-  resources :user_sessions
-  resources :users
-  
-  resource :user_session
-  resource :account, :controller => "users"
+#  resource :account, :controller => "users"
   
   get "site/about"
   get "site/pricing"

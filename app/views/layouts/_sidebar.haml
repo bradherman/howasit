@@ -1,21 +1,21 @@
 #sidebar
   #sidebar-wrapper
     %h1#sidebar-title
-      = link_to user_path(session[:user_id])
+      = link_to current_user
     %center= link_to image_tag("logo_small.png", :id => "logo"), root_path
     #profile-links
       Hello, 
-      = link_to "#{User.find(session[:user_id]).first_name}, ", "#"
+      = link_to "#{current_user.first_name}, ", "#"
       welcome back.
       %br
-      = link_to "My Account", user_path(session[:user_id])
+      = link_to "My Account", account_path
       = " | "
       = link_to "Upgrade", "#"
       = " | "
       = link_to "Log Out", logout_path
     %ul#main-nav
       %li
-        = link_to "Dashboard", user_path(session[:user_id]), {:class => "nav-top-item no-submenu current"}
+        = link_to "Dashboard", current_user, {:class => "nav-top-item no-submenu current"}
       %li
         = link_to "My Businesses", "#", {:class => "nav-top-item"}
         %ul

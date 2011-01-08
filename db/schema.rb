@@ -10,14 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101231061545) do
+ActiveRecord::Schema.define(:version => 20110108085535) do
 
   create_table "addresses", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "billing_infos", :force => true do |t|
+    t.string   "line_1"
+    t.string   "line_2",           :default => ""
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.integer  "addressable_id"
+    t.string   "addressable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -68,36 +70,57 @@ ActiveRecord::Schema.define(:version => 20101231061545) do
   add_index "blog_tags", ["tag"], :name => "index_blog_tags_on_tag"
 
   create_table "businesses", :force => true do |t|
+    t.string   "name"
+    t.string   "phone"
+    t.string   "description"
+    t.integer  "user_id"
+    t.integer  "survey_id"
+    t.integer  "coupon_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "coupons", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "geocodes", :force => true do |t|
+    t.decimal "latitude",    :precision => 15, :scale => 12
+    t.decimal "longitude",   :precision => 15, :scale => 12
+    t.string  "query"
+    t.string  "street"
+    t.string  "locality"
+    t.string  "region"
+    t.string  "postal_code"
+    t.string  "country"
+    t.string  "precision"
   end
 
-  create_table "credit_cards", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  add_index "geocodes", ["country"], :name => "geocodes_country_index"
+  add_index "geocodes", ["latitude"], :name => "geocodes_latitude_index"
+  add_index "geocodes", ["locality"], :name => "geocodes_locality_index"
+  add_index "geocodes", ["longitude"], :name => "geocodes_longitude_index"
+  add_index "geocodes", ["postal_code"], :name => "geocodes_postal_code_index"
+  add_index "geocodes", ["precision"], :name => "geocodes_precision_index"
+  add_index "geocodes", ["query"], :name => "geocodes_query_index", :unique => true
+  add_index "geocodes", ["region"], :name => "geocodes_region_index"
+
+  create_table "geocodings", :force => true do |t|
+    t.integer "geocodable_id"
+    t.integer "geocode_id"
+    t.string  "geocodable_type"
   end
 
-  create_table "question_options", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "questions", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "geocodings", ["geocodable_id"], :name => "geocodings_geocodable_id_index"
+  add_index "geocodings", ["geocodable_type"], :name => "geocodings_geocodable_type_index"
+  add_index "geocodings", ["geocode_id"], :name => "geocodings_geocode_id_index"
 
   create_table "subscription_levels", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "surveys", :force => true do |t|
+    t.string   "name"
+    t.integer  "business_limit"
+    t.integer  "coupon_limit"
+    t.integer  "survey_limit"
+    t.integer  "count"
+    t.boolean  "slug_enabled"
+    t.integer  "trial_period"
+    t.float    "price"
+    t.boolean  "qr_enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -121,12 +144,13 @@ ActiveRecord::Schema.define(:version => 20101231061545) do
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.integer  "login_count",       :default => 0,     :null => false
+    t.integer  "login_count",           :default => 0,     :null => false
     t.datetime "current_login_at"
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
-    t.boolean  "admin",             :default => false
+    t.integer  "subscription_level_id"
+    t.boolean  "admin",                 :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
