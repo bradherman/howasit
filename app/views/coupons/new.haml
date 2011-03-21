@@ -1,0 +1,12 @@
+%h2= "Welcome #{current_user.first_name}"
+%p#page-intro What would you like to do?
+.content-box
+  .content-box-header
+    %h3 Create a New Coupon
+    .clear
+  .content-box-content
+    .tab-content.default-tab#tab1
+      - if current_user.coupons.size >= current_user.subscription_level.coupon_limit
+        %p You've used up your coupon slots.  Please upgrade to add more locations.
+      - else
+        = render 'form'

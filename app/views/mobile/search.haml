@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    = csrf_meta_tag
+    %title= @title
+    = stylesheet_link_tag :mobile
+    = javascript_include_tag :mobile_defaults
+    = javascript_include_tag "other"
+  %body
+    #main.current
+      .toolbar
+        %h1{:style => "width:auto;"} Which Location Are You At?
+      %ul.edgetoedge.rounded
+        - @businesses.each do |b|
+          %li.arrow= link_to "#{b.name} <span>(#{b.street})</span>".html_safe, "#survey"
+    #survey

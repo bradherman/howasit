@@ -8,7 +8,9 @@ class Ability
     # blog abilities
     can :read, [BlogPost, BlogComment]
     can :create, BlogComment    
-    #can :show, [Business, Coupon, Survey]
+    # can :read, [Business, Survey]  -- Need to namespace
+    can :read, Survey
+    can :read, Coupon
     can :create, User
     can :manage, UserSession
     
@@ -22,13 +24,16 @@ class Ability
       can [:update, :destroy, :read], Business do |b| 
         b.user_id == user.id
       end
-      # cant create -- handle on if logged on, cant new -- hangle on if logged on
-      
-      # business model
-
+      can :create, Survey
+      can [:update, :destroy], Survey do |s|
+        s.user_id == user.id
+      end
+      can :create, Coupon
+      can [:update, :destroy], Coupon do |c|
+        c.user_id == user.id
+      end
+            
       # coupon model
-      
-      # survey model
     else
       # non-registered user
     end

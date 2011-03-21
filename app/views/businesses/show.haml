@@ -3,9 +3,6 @@
 .content-box
   .content-box-header
     %h3= @business.name
-    /%ul.content-box-tabs
-    /  %li
-    /    %a.default-tab{:href => "#tab1"} Businesses
     .clear
   .content-box-content
     %h3 Business Name
@@ -19,6 +16,4 @@
       = @business.street
       %br
       = "#{@business.city}, #{@business.state} #{@business.zip}"
-    /t.integer :user_id
-    /t.integer :survey_id
-    /t.integer :coupon_id
+    %p= link_to "Edit", edit_business_path(@business)

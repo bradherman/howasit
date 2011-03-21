@@ -20,20 +20,20 @@
           .topLinks
             .menu-top-links-container
               %ul#menu-top-links.menu
-                %li.menu-item= link_to "About", site_about_path
+                %li.menu-item= link_to "About", about_path
                 %li.menu-item= link_to "Login", login_path
                 %li.menu-item= link_to "Blog", blog_posts_path
-                %li.menu-item= link_to "Help", site_about_path
-                %li.menu-item= link_to "Contact", site_contact_path
+                %li.menu-item= link_to "Help", about_path
+                %li.menu-item= link_to "Contact", contact_path
           %h1#logo= link_to "howas.it?", root_path
           .nav
             .menu-main-nav-container
               %ul#menu-main-nav.menu
                 %li.menu-item
-                  %a{:href => site_about_path}
+                  %a{:href => about_path}
                     %span Tour
                 %li.menu-item
-                  %a{:href => site_pricing_path}
+                  %a{:href => pricing_path}
                     %span Pricing
                 %li.menu-item
                   %a{:href => new_user_path}
@@ -225,9 +225,9 @@
           %div
             %h3 Company
             %ul
-              %li= link_to "Team", root_path
-              %li= link_to "Partners", root_path
-              %li= link_to "Investors", root_path
+              %li= link_to "Team", team_path
+              %li= link_to "Partners", partners_path
+              %li= link_to "Investors", investors_path
           %div
             %h3 Keep in Touch
             %ul.social-links
@@ -236,9 +236,9 @@
           %div
             %h3 Support
             %p
-              = link_to "Create Support Ticket", root_path
+              = link_to "Create Support Ticket", support_path
               %br
-              = link_to "FAQs", root_path
+              = link_to "FAQs", faq_path
           %div
             %h3 My Address
             %p 

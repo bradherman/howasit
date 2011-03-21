@@ -20,13 +20,12 @@
             %div
               Javascript is disabled or is not supported by your browser. Please <a href="http://browsehappy.com/" title="Upgrade to a better browser">upgrade</a> your browser or <a href="http://www.google.com/support/bin/answer.py?answer=23852" title="Enable Javascript in your browser">enable</a> Javascript to navigate the interface properly.
         .account-info
-          - s = SubscriptionLevel.find(current_user.subscription_level)
           %p
-            = "You've used #{current_user.businesses.size}/#{s.business_limit} of your business slots."
-        /    %br
-        /    = "You've used #{@user.surveys.size}/#{s.survey_limit} of your survey slots."
-        /    %br
-        /    = "You've used #{@user.coupons.size}/#{s.coupon_limit} of your coupon slots."
+            = "You've used #{current_user.businesses.size}/#{current_user.subscription_level.business_limit} of your business slots."
+            %br
+            = "You've used #{current_user.surveys.size}/#{current_user.subscription_level.survey_limit} of your survey slots."
+            %br
+            = "You've used #{current_user.coupons.size}/#{current_user.subscription_level.coupon_limit} of your coupon slots."
         - if :notice
           %p= flash[:notice]
         = yield

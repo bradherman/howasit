@@ -50,11 +50,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize! :update, @user
     
-    render :layout => 'edit'
+    respond_to do |format|
+	    format.html { render :layout => 'admin' }
+	    format.xml  { render :xml => @user }
+	  end
   end
 
   def update
-    #@user = @current_user
+    @user = current_user
+    
     #custom code for user update method
   
     respond_to do |format|

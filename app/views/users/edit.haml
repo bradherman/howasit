@@ -1,0 +1,41 @@
+%h2= "Welcome #{current_user.first_name}"
+%p#page-intro
+.content-box
+  .content-box-header
+    %h3 Edit Account
+    .clear
+  .content-box-content
+    .tab-content.default-tab#tab1
+      - form_for(@user) do |form|
+        %h5 Edit My Account
+        = form.error_messages
+        %p
+          = form.label :first_name, "First Name"
+          = form.text_field :first_name, {:maxlength => "50", :class => "text-input"}
+        %p
+          = form.label :last_name, "Last name"
+          = form.text_field :last_name, {:maxlength => "50", :class => "text-input"}
+          %em *
+        %p
+          = form.label :email, "Email Address"
+          = form.text_field :email, {:maxlength => "50", :class => "text-input"}
+          %em *
+        %p
+          = form.label :login, "Username"
+          = form.text_field :login, {:maxlength => "20", :class => "text-input"}
+          %em *
+        %p
+          = form.label :password, form.object.new_record? ? nil : "Change password" 
+          = form.password_field :password, {:maxlength => "25", :class => "text-input"}
+          %em *
+        %p
+          = form.label :password_confirmation
+          = form.password_field :password_confirmation, {:maxlength => "25", :class => "text-input"}
+          %em *
+        %p
+          = form.label :phone
+          = form.text_field :phone, {:class => "phone", :maxlength => "20", :class => "text-input"}
+          %em *
+        %p
+          = form.submit "Save Changes", {:class => "button"}
+      = javascript_include_tag "form"

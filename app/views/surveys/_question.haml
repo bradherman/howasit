@@ -1,0 +1,8 @@
+= fields_for "survey[question_attributes][]", question do |question_form|
+  .question
+    = question_form.label :question_text
+    = question_form.text_field :question_text, {:class => "text-input"}
+    = link_to_function (image_tag('admin/icons/cross_circle.png')+" Remove"), "$b = $(this).parent(); $b.slideToggle(200, function(){$b.remove()});"    
+    %div{:id => "question_options"}
+      = render :partial => 'question_option', :collection => question.question_options
+      %p= add_question_option_link "Add Question Option"

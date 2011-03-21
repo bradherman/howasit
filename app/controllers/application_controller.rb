@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
   
   helper :all
   helper_method :current_user_session, :current_user
-  filter_parameter_logging :password, :password_confirmation
-
+  
   rescue_from CanCan::AccessDenied do |exception|
     flash[:notice] = "Access denied."
     if current_user

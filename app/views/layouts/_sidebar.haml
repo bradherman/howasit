@@ -19,13 +19,25 @@
       %li
         = link_to "My Businesses", "#", {:class => "nav-top-item"}
         %ul
-          %li= link_to "Show All", user_businesses_path
+          %li= link_to "Show All", account_path
+          %li= link_to "Add Business Location", new_business_path
       %li
         = link_to "My Surveys", "#", {:class => "nav-top-item"}
+        %ul
+          %li= link_to "Show All", account_path
+          %li= link_to "Create New Survey", new_survey_path
       %li
         = link_to "My Coupons", "#", {:class => "nav-top-item no-submenu"}
+        %ul
+          %li= link_to "Show All", account_path
+          %li= link_to "Create New Coupon", new_coupon_path
       %li
-        = link_to "My Account", "#", {:class => "nav-top-item no-submenu"}
+        = link_to "My Account", "#", {:class => "nav-top-item"}
+        %ul
+          %li= link_to "View My Account", current_user
+          %li= link_to "Edit My Account", edit_user_path(current_user)
+          %li= link_to "Update Billing Info", current_user
+          %li= link_to "Upgrade", current_user
     #messages{:style => "display:none"}
       %h3 Number of messages
       %p

@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    = csrf_meta_tag
+    %title= @title
+    = stylesheet_link_tag :mobile
+    = javascript_include_tag :mobile_defaults
+    = javascript_include_tag "mobile_script"
+  %body
+    #jqt
+      #getlocation
+        .toolbar
+          %h1 Geo Location
+        .info
+        - if @longitude

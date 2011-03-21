@@ -1,0 +1,20 @@
+%p#notice= notice
+%h2 View Coupon
+.clear
+.content-box
+  .content-box-header
+    %h3= @coupon.name
+    .clear
+  .content-box-content
+    %h3 Terms
+    %p= @coupon.terms
+    %h3 Barcode
+    %p= @coupon.barcode
+    %h3 Description
+    %p= @coupon.description
+    %h3 Length of validity
+    - if @coupon.days_until_expiration == 0 or ! @coupon.days_until_expiration
+      %p Unlimited
+    - else
+      %p= pluralize(@coupon.days_until_expiration, 'day')
+    %p= link_to "Edit Coupon", edit_coupon_path(@coupon)

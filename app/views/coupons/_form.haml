@@ -1,0 +1,25 @@
+= form_for(@coupon) do |f|
+  - if @coupon.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@coupon.errors.count, "error")} prohibited this coupon from being saved"
+      %ul
+        - @coupon.errors.full_messages.each do |msg|
+          %li= msg
+  %h3 Coupon Info
+  %p
+    = f.label :name, "Name This Coupon"
+    = f.text_field :name, {:class => "text-input"}
+  %p
+    = f.label :terms, "Coupon Terms (ie: 10% off next purchase)"
+    = f.text_field :terms, {:class => "text-input"}
+  %p
+    = f.label :description, "Give extra info about your coupon here"
+    = f.text_area :description, {:class => "text-input", :style => "width:400px !important;height:100px;"}
+  %p
+    = f.label :days_until_expiration, "How many days should your coupon be valid for (from date they fill out the survey)"
+    = f.text_field :days_until_expiration, {:class => "text-input"}
+  %p
+    = f.label :barcode, "Enter the barcode value if applicable"
+    = f.text_field :barcode, {:class => "text-input"}
+  .actions
+    = f.submit "Save Coupon", {:class => "button"}

@@ -1,0 +1,9 @@
+%h2= "Welcome #{current_user.first_name}"
+%p#page-intro What would you like to do?
+.content-box
+  .content-box-header
+    %h3 Edit Coupon
+    .clear
+  .content-box-content
+    .tab-content.default-tab#tab1
+      = render 'form'

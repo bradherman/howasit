@@ -1,11 +1,14 @@
 class BusinessesController < ApplicationController
-  before_filter :require_user, :only => [:edit, :update, :destroy, :show]
+  before_filter :require_user, :only => [:edit, :update, :destroy, :new]
   layout "admin"
   
   # GET /businesses
   # GET /businesses.xml
   def index
+    @title = "My Businesses"
     @businesses = Business.all
+    
+    # replace with sql query allowing search to be passed?
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,6 +20,7 @@ class BusinessesController < ApplicationController
   # GET /businesses/1.xml
   def show
     @business = Business.find(params[:id])
+    @title = @business.name
     authorize! :read, @business
     
     respond_to do |format|
@@ -40,6 +44,7 @@ class BusinessesController < ApplicationController
   # GET /businesses/1/edit
   def edit
     @business = Business.find(params[:id])
+    @title = "Edit #{@business.name}"
     authorize! :update, @business
   end
 
@@ -47,7 +52,7 @@ class BusinessesController < ApplicationController
   # POST /businesses.xml
   def create
     @business = Business.new(params[:business])
-
+    
     respond_to do |format|
       if @business.save
         format.html { redirect_to(@business, :notice => 'Business was successfully created.') }
@@ -86,5 +91,11 @@ class BusinessesController < ApplicationController
       format.html { redirect_to(current_user) }
       format.xml  { head :ok }
     end
+  end
+  
+  def edit_multiple
+  end
+  
+  def update_multiple
   end
 end

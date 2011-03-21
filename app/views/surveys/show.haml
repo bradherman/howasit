@@ -1,0 +1,16 @@
+%h2= @survey.name
+.clear
+.content-box
+  .content-box-header
+    %h3 Questions
+    .clear
+  .content-box-content
+    %ol
+      - @survey.questions.each do |q|
+        %li= q.question_text
+        - if q.question_options
+          %ol
+            - q.question_options.each do |qo|
+              %li= qo.text
+    %br
+    /= link_to "Edit Survey", edit_survey_path(@survey)

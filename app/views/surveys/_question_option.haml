@@ -1,0 +1,5 @@
+= fields_for "question[question_option_attributes][]", question_option do |question_option_form|
+  .question_option
+    = question_option_form.label :text
+    = question_option_form.text_field :text, {:class => "text-input"}
+    = link_to_function (image_tag('admin/icons/cross_circle.png')+" Remove"), "$c = $(this).parent(); $c.slideToggle(200, function(){$c.remove();})"    

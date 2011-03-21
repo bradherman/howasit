@@ -1,4 +1,9 @@
-%h1 Editing business
-= render 'form'
-= "#{link_to 'Show', @business} |"
-= link_to 'Back', businesses_path
+%h2= "Welcome #{current_user.first_name}"
+%p#page-intro What would you like to do?
+.content-box
+  .content-box-header
+    %h3 Edit Business
+    .clear
+  .content-box-content
+    .tab-content.default-tab#tab1
+      = render 'form'

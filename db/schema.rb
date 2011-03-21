@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110108051244) do
+ActiveRecord::Schema.define(:version => 20110110170401) do
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_post_id"
@@ -73,6 +73,32 @@ ActiveRecord::Schema.define(:version => 20110108051244) do
     t.datetime "updated_at"
   end
 
+  create_table "coupons", :force => true do |t|
+    t.string   "name"
+    t.string   "terms"
+    t.string   "barcode"
+    t.text     "description"
+    t.integer  "days_until_expiration"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "question_options", :force => true do |t|
+    t.string   "text"
+    t.integer  "question_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "questions", :force => true do |t|
+    t.integer  "survey_id"
+    t.string   "question_text"
+    t.string   "question_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "subscription_levels", :force => true do |t|
     t.string   "name"
     t.integer  "business_limit"
@@ -83,6 +109,13 @@ ActiveRecord::Schema.define(:version => 20110108051244) do
     t.integer  "trial_period"
     t.float    "price"
     t.boolean  "qr_enabled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "surveys", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
