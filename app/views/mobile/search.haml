@@ -12,5 +12,18 @@
         %h1{:style => "width:auto;"} Which Location Are You At?
       %ul.edgetoedge.rounded
         - @businesses.each do |b|
-          %li.arrow= link_to "#{b.name} <span>(#{b.street})</span>".html_safe, "#survey"
-    #survey
+          - if b.survey
+            %li.arrow= link_to "#{b.name} <span>(#{b.street})</span>".html_safe, "#survey_#{b.id}"
+    - @businesses.each do |b|
+      %div{:id => "survey_#{b.id}"}
+        .toolbar
+          %h1{:style => "width:auto;"}= b.name
+          = link_to "Back", "#main", :class => "back"
+        - if b.survey
+          %form
+            %ul.rounded
+              - b.survey.questions.each do |q|
+                %li
+                  %input{:type => "text", :name => q.id, :placeholder => q.question_text, :id => q.id}
+            %a{:style => "margin:0 10px;color:rgba(0,0,0,.9)", :href => "#", :class => "submit whiteButton"} Submit
+            
