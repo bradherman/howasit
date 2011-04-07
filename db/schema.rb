@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110110170401) do
+ActiveRecord::Schema.define(:version => 20110321021309) do
 
   create_table "blog_comments", :force => true do |t|
     t.integer  "blog_post_id"
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(:version => 20110110170401) do
     t.string   "country",     :default => "US"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "coupons", :force => true do |t|
