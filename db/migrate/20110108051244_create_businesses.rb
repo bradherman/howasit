@@ -12,7 +12,7 @@ class CreateBusinesses < ActiveRecord::Migration
       t.string  :city
       t.string  :state
       t.integer :zip
-      t.string  :country, :default => "US"
+      t.string  :country, :default => "US"s
 
       t.timestamps
     end
