@@ -11,8 +11,6 @@ class MobileController < ApplicationController
   end
   
   def search
-    @longitude = params[:long]
-    @latitude = params[:lat]
-    @businesses = Business.all
+    @businesses = Business.near(["#{params[:lat]}, #{params[:long]}"],1)
   end
 end
